@@ -73,9 +73,150 @@ body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Segoe
 .btn-primary { background: var(--primary); border-color: var(--primary); }
 .btn-primary:hover { background: #4338ca; border-color: #4338ca; }
 
+/* ── 사이드바 사용자 정보 ── */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-top: auto;
+  margin-bottom: .75rem;
+  padding: .75rem .5rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.user-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a5b4fc);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.user-info { flex: 1; min-width: 0; }
+.user-name  { font-size: .85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-email { font-size: .72rem; opacity: .6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.logout-btn {
+  background: none; border: none; color: rgba(255,255,255,.6);
+  padding: .3rem .4rem; border-radius: 6px; cursor: pointer;
+  transition: all .2s; font-size: .95rem; flex-shrink: 0;
+}
+.logout-btn:hover { background: rgba(239,68,68,.25); color: #fca5a5; }
+
+/* ── 로그인 / 회원가입 공통 ── */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 60%, #7c3aed 100%);
+  padding: 1.5rem;
+}
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  animation: authFadeIn .4s ease;
+}
+@keyframes authFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.auth-logo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.auth-logo-icon {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  font-size: 1.6rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: .6rem;
+  box-shadow: 0 4px 14px rgba(79,70,229,.4);
+}
+.auth-brand { font-size: 1.4rem; font-weight: 800; margin: 0; color: #1e1b4b; }
+.auth-brand-sub { font-size: .75rem; color: var(--muted); margin: .1rem 0 0; }
+
+.auth-title { font-size: 1.3rem; font-weight: 700; margin-bottom: .25rem; color: var(--text); }
+.auth-desc  { font-size: .88rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+.auth-card .form-label { font-size: .85rem; font-weight: 600; color: var(--text); margin-bottom: .35rem; }
+.auth-card .input-group-text {
+  background: var(--primary-soft);
+  border-color: var(--border);
+  color: var(--primary);
+  min-width: 42px;
+  justify-content: center;
+}
+.auth-card .form-control {
+  border-color: var(--border);
+  font-size: .9rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.auth-card .form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+}
+.btn-eye {
+  cursor: pointer;
+  background: var(--primary-soft) !important;
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+  transition: color .2s;
+}
+.btn-eye:hover { color: var(--primary) !important; }
+
+.auth-btn {
+  padding: .7rem 1rem;
+  font-size: .95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all .2s;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border: none;
+}
+.auth-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(79,70,229,.35);
+}
+.auth-btn:disabled { opacity: .7; cursor: not-allowed; }
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: .88rem;
+  color: var(--muted);
+}
+.auth-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: .35rem;
+}
+.auth-link:hover { text-decoration: underline; }
+
+/* 테스트 계정 박스 */
+.demo-box {
+  margin-top: 1.25rem;
+  background: var(--primary-soft);
+  border: 1px dashed #a5b4fc;
+  border-radius: 10px;
+  padding: .75rem 1rem;
+}
+.demo-title { font-size: .8rem; font-weight: 700; color: var(--primary); margin: 0 0 .3rem; }
+.demo-info  { font-size: .8rem; color: #4338ca; margin: 0; line-height: 1.6; font-family: monospace; }
+
 @media (max-width: 768px) {
   .sidebar { width: 70px; }
-  .brand-title, .brand-sub, .sidebar .nav-link span, .sidebar-footer { display: none; }
+  .brand-title, .brand-sub, .sidebar-footer { display: none; }
+  .user-info, .user-name, .user-email { display: none; }
   .sidebar .nav-link i { margin-right: 0; }
   .main-content { padding: 1rem; }
+  .auth-card { padding: 2rem 1.25rem; }
 }
