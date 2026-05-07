@@ -50,6 +50,39 @@ src/
    └─ AddTransaction.vue
 ```
 
+## 컴포넌트 구성도
+
+```mermaid
+flowchart TD
+  subgraph App[Vue App]
+    Main[src/main.js] --> AppVue[src/App.vue]
+    AppVue --> Router[vue-router<br/>src/router/index.js]
+    Router --> Dash[src/views/Dashboard.vue]
+    Router --> TxList[src/views/Transactions.vue]
+    Router --> TxAdd[src/views/AddTransaction.vue]
+  end
+
+  subgraph UI[UI Components]
+    Stat[src/components/StatCard.vue]
+    Chart[src/components/GoogleChart.vue]
+  end
+
+  subgraph State[State / Data]
+    Store[Pinia Store<br/>src/stores/transaction.js]
+    Api[axios instance<br/>src/stores/api.js]
+    Server[json-server<br/>db.json :3001]
+  end
+
+  Dash --> Stat
+  Dash --> Chart
+
+  Dash --> Store
+  TxList --> Store
+  TxAdd --> Store
+
+  Store --> Api --> Server
+```
+
 ## API 엔드포인트 (json-server)
 - `GET    /transactions`
 - `POST   /transactions`
